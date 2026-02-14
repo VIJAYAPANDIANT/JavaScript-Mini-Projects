@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radius of a Circle</title>
+</head>
+<body>
+    <h1 id="myh1">Enter the radius of a circle:</h1>
+    <label for="radius">Radius:</label>
+    <input type="number" id="radius" name="radius"><br><br>
+    <button id="mysubmit">Submit</button>
+    <h3 id="myh3"></h3>
+    <script>
+        document.getElementById("mysubmit").addEventListener("click", function() {
+            var radius = parseFloat(document.getElementById("radius").value);
+            if (isNaN(radius) || radius <= 0) {
+                document.getElementById("myh3").textContent = "Please enter a valid positive number for the radius.";
+                return;
+            }
+            var area = Math.PI * Math.pow(radius, 2);
+            var circumference = 2 * Math.PI * radius;
+            document.getElementById("myh3").textContent = "Area: " + area.toFixed(2) + ", Circumference: " + circumference.toFixed(2);
+        });
+    </script>
+</body>
+</html>
