@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+</head>
+<body>
+    <style>
+        #countlabel{
+            display:block;
+            text-align:center;
+            font-size:10em;
+            font-family:Helvetica;
+        }
+
+        #buttons{
+            text-align:center;
+        }
+        .button{
+            padding:10px 20px;
+            font-size:1.5em;
+            color:white;
+            background-color:#007BFF;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover{
+            background-color:#0056b3;
+        }
+    </style>
+    <label id="countlabel">0</label><br><br>
+    <div id="buttons">
+        <button id="increment" class="button">Increment</button>
+        <button id="decrement" class="button">Decrement</button>
+        <button id="reset" class="button">Reset</button>
+    </div>
+    <script>
+        let count = 0;
+        const countLabel = document.getElementById("countlabel");
+        const incrementButton = document.getElementById("increment");
+        const decrementButton = document.getElementById("decrement");
+        const resetButton = document.getElementById("reset");
+
+        incrementButton.addEventListener("click", () => {
+            count++;
+            countLabel.textContent = count;
+        });
+
+        decrementButton.addEventListener("click", () => {
+            count--;
+            countLabel.textContent = count;
+        });
+
+        resetButton.addEventListener("click", () => {
+            count = 0;
+            countLabel.textContent = count;
+        });
+    </script>
+</body>
+</html>
