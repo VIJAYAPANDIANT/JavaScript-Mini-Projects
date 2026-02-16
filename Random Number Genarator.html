@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+</head>
+<body>
+    <style>
+        body{
+            font-family:verdana;
+            text-align:center;
+        }
+        #mybutton{
+            font-size:3em;
+            padding:5px 25px;
+            border-radius: 5px;
+        }
+        #mylabel{
+            font-size:3em;
+        }
+    </style>
+    <button id="mybutton">roll</button><br><br>
+    <label id="mylabel"></label>
+    <script>
+        const mybutton = document.getElementById("mybutton");
+        const mylabel = document.getElementById("mylabel");
+        const min = 1;
+        const max = 100;
+        let randomNumber;
+        mybutton.onclick=function(){
+            randomNumber=Math.floor(Math.random()*max)+max;
+            mylabel.textContent=randomNumber;
+        }
+    </script>
+</body>
+</html>
