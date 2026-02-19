@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roller</title>
+</head>
+<body>
+    <style>
+        #container{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+button{
+    font-size: 1.5rem;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: hsl(210, 100%, 50%);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+button:hover{
+    background-color: hsl(210, 100%, 60%);
+}
+button:active{
+    background-color: hsl(210, 100%, 70%);
+}
+input{
+    font-size: 2rem;
+    width: 150px;
+    text-align: center;
+    font-weight: bold;
+}
+#diceResult{
+    margin: 25px;
+}
+#diceImages img{
+    width: 150px;
+    margin: 5px;
+}
+
+
+    </style>
+        <div id="container">
+            <h1>Dice Roller</h1>
+            <input type="number" id="numOfDice" value="1" min="1"><br><br>
+            <label  for="numOfDice">Number of Dice:</label>
+            <button onclick="rollDice()">Roll Dice</button>
+            <div id="diceResult"></div>
+            <div id="diceImages"></div>
+        </div>
+
+        <script>
+            function rollDice() {
+
+                    const numOfDice = document.getElementById("numOfDice").value;
+                    const diceResult = document.getElementById("diceResult");
+                    const diceImages = document.getElementById("diceImages");
+                    const values = [];
+                    const images = [];
+
+                    for (let i = 0; i < numOfDice; i++) {
+                        const value = Math.floor(Math.random() * 6) + 1;
+                        values.push(value);
+                        images.push(`<img src="dice_images/${value}.png" alt="Dice ${value}">`);
+                    }
+
+                    diceResult.textContent = `dice: ${values.join(', ')}`;
+                    diceImages.innerHTML = images.join('');
+                }
+        </script>
+</html>
