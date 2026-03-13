@@ -147,4 +147,4 @@ All projects are Vanilla HTML/CSS/JS. To run any of them:
 ---
 
 ## ✍️ Author
-**Vijaya Pandian T**
+### Vijayapandian T
