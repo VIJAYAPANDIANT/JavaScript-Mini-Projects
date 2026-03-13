@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+</head>
+<body>
+    <style>
+        body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: hsl(0, 0%, 90%);
+}
+#myH1{
+    font-size: 4rem;
+    font-family: "Arial", sans-serif;
+    color: hsl(0, 0%, 25%);
+}
+#container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    border: 5px solid;
+    border-radius: 50px;
+    background-color: white;
+}
+#display{
+    font-size: 5rem;
+    font-family: monospace;
+    font-weight: bold;
+    color: hsl(0, 0%, 30%);
+    text-shadow: 2px 2px 2px hsla(0, 0%, 0%, 0.75);
+    margin-bottom: 25px;
+}
+#controls button{
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: 5px;
+    min-width: 125px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.5s ease;
+}
+#startBtn{
+    background-color: hsl(115, 100%, 40%);
+}
+#startBtn:hover{
+    background-color: hsl(115, 100%, 30%);
+}
+#stopBtn{
+    background-color: hsl(10, 90%, 50%);
+}
+#stopBtn:hover{
+    background-color: hsl(10, 90%, 40%);
+}
+#resetBtn{
+    background-color: hsl(205, 90%, 60%);
+}
+#resetBtn:hover{
+    background-color: hsl(205, 90%, 50%);
+}
+    </style>
+    <h1 id="myH1">Stopwatch</h1>
+
+    <div id="container">
+        <div id="display">
+            00:00:00:00
+        </div>
+        <div id="controls">
+            <button id="startBtn" onclick="start()">Start</button>
+            <button id="stopBtn" onclick="stop()">Stop</button>
+            <button id="resetBtn" onclick="reset()">Reset</button>
+        </div>
+    <script>
+        // STOPWATCH PROGRAM
+
+const display = document.getElementById("display");
+let timer = null;
+let startTime = 0;
+let elapsedTime = 0;
+let isRunning = false;
+
+function start(){
+    if(!isRunning){
+        startTime = Date.now() - elapsedTime;
+        timer = setInterval(update, 10);
+        isRunning = true;
+    }
+}
+
+function stop(){
+    if(isRunning){
+        clearInterval(timer);
+        elapsedTime = Date.now() - startTime;
+        isRunning = false;
+    }
+}
+
+function reset(){
+    clearInterval(timer);
+    startTime = 0;
+    elapsedTime = 0;
+    isRunning = false;    
+    display.textContent = "00:00:00:00";
+}
+
+function update(){
+    
+    const currentTime = Date.now();
+    elapsedTime = currentTime - startTime;
+
+    let hours = Math.floor(elapsedTime / (1000 * 60 * 60));
+    let minutes = Math.floor(elapsedTime / (1000 * 60) % 60);
+    let seconds = Math.floor(elapsedTime / 1000 % 60);
+    let milliseconds = Math.floor(elapsedTime % 1000 / 10);
+
+    hours = String(hours).padStart(2, "0");
+    minutes = String(minutes).padStart(2, "0");
+    seconds = String(seconds).padStart(2, "0");
+    milliseconds = String(milliseconds).padStart(2, "0");
+
+    display.textContent = `${hours}:${minutes}:${seconds}:${milliseconds}`;
+}
+        
+    </script>
+    
+</body>
+</html>
